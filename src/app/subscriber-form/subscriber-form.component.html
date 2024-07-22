@@ -1,0 +1,82 @@
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="assets/cris-logo.png" alt="CRIS Logo">
+    </div>
+    <div class="social-links">
+      <a href="https://twitter.com/cris" target="_blank">
+        <img src="assets/twitter.png" alt="Twitter">
+      </a>
+      <a href="https://www.facebook.com/cris" target="_blank">
+        <img src="assets/facebook.png" alt="Facebook">
+      </a>
+      <a href="https://www.linkedin.com/company/cris" target="_blank">
+        <img src="assets/linkedin.png" alt="LinkedIn">
+      </a>
+    </div>
+  </header>
+
+  <div class="form-container">
+    <div class="form-header">
+      <h2>Subscriber Form</h2>
+    </div>
+    
+    <form [formGroup]="subscriberForm" (ngSubmit)="onSubmitSubscriber()">
+      <!-- <div class="form-group">
+        <label for="subscriber_id">Subscriber ID:<span class="required">*</span></label>
+        <input id="subscriber_id" formControlName="subscriber_id" [disabled]="true">
+        <div *ngIf="subscriberForm.get('subscriber_id')?.invalid && (subscriberForm.get('subscriber_id')?.dirty || subscriberForm.get('subscriber_id')?.touched)" class="error-message">
+          This needs to be filled
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label for="subscriber_id">Subscriber ID:<span class="required">*</span></label>
+        <select id="subscriber_id" formControlName="subscriber_id">
+           <option *ngFor="let code of subscriberCodes" [value]="code">{{ code }}</option>
+         </select>
+        <div *ngIf="subscriberForm.get('subscriber_id')?.invalid && (subscriberForm.get('subscriber_id')?.dirty || subscriberForm.get('subscriber_id')?.touched)" class="error-message">
+            This needs to be filled
+       </div>
+      </div>
+
+      <div class="form-group">
+        <label for="display_device">Type of Display Device:<span class="required">*</span></label>
+        <div class="multiselect">
+          <div class="selectBox" (click)="toggleDropdown('displayDevices')">
+            <select>
+              <option>Select Display Devices</option>
+            </select>
+            <div class="overSelect"></div>
+          </div>
+          <div id="displayDevices" class="checkboxes" [ngClass]="{'show': dropdowns.displayDevices}">
+            <label *ngFor="let device of displayDevices">
+              <input type="checkbox" [value]="device" (change)="onCheckboxChange($event, 'display_device')" />{{ device }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="services_required">Type of Services Required:<span class="required">*</span></label>
+        <div class="multiselect">
+          <div class="selectBox" (click)="toggleDropdown('servicesRequired')">
+            <select>
+              <option>Select Services Required</option>
+            </select>
+            <div class="overSelect"></div>
+          </div>
+          <div id="servicesRequired" class="checkboxes" [ngClass]="{'show': dropdowns.servicesRequired}">
+            <label *ngFor="let service of servicesRequired">
+              <input type="checkbox" [value]="service" (change)="onCheckboxChange($event, 'services_required')" />{{ service }}
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="submit-button">Submit</button>
+      </div>
+    </form>
+  </div>
+</body>

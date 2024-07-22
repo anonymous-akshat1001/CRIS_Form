@@ -1,0 +1,133 @@
+<app-loader [isLoading]="isLoading"></app-loader>
+
+<!-- src/app/vendor-form/vendor-form.component.html --> 
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="assets/cris-logo.png" alt="CRIS Logo">
+    </div>
+    <div class="social-links">
+      <a href="https://twitter.com/cris" target="_blank">
+        <img src="assets/twitter.png" alt="Twitter">
+      </a>
+      <a href="https://www.facebook.com/cris" target="_blank">
+        <img src="assets/facebook.png" alt="Facebook">
+      </a>
+      <a href="https://www.linkedin.com/company/cris" target="_blank">
+        <img src="assets/linkedin.png" alt="LinkedIn">
+      </a>
+    </div>
+  </header>
+  
+  <div class="form-container">
+    <div class="form-header">
+      <h2>CRIS Vendor Application Form</h2>
+    </div>
+    <form [formGroup]="vendorForm" (ngSubmit)="onSubmit()">
+      <div class="form-group" [class.invalid]="isInvalid('vendor_name')">
+        <label for="vendor_name">Vendor Name:<span class="required">*</span></label>
+        <input id="vendor_name" formControlName="vendor_name">
+        <div *ngIf="isInvalid('vendor_name')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('vendor_address_line1')">
+        <label for="vendor_address_line1">Address Line 1:<span class="required">*</span></label>
+        <input id="vendor_address_line1" formControlName="vendor_address_line1">
+        <div *ngIf="isInvalid('vendor_address_line1')" class="error-message">This needs to be filled</div>
+      </div>
+      
+      <div class="form-group">
+        <label for="vendor_address_line2">Address Line 2:</label>
+        <input id="vendor_address_line2" formControlName="vendor_address_line2">
+      </div>
+      
+      <div class="form-group" [class.invalid]="isInvalid('vendor_address_state')">
+        <label for="vendor_address_state">State:<span class="required">*</span></label>
+        <select id="vendor_address_state" formControlName="vendor_address_state">
+          <option *ngFor="let state of states" [value]="state.name">{{ state.name }}</option>
+        </select>
+        <div *ngIf="isInvalid('vendor_address_state')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('vendor_address_pincode')">
+        <label for="vendor_address_pincode">Pincode:<span class="required">*</span></label>
+        <input id="vendor_address_pincode" formControlName="vendor_address_pincode">
+        <div *ngIf="isInvalid('vendor_address_pincode')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('vendor_location')">
+        <label for="vendor_location">Vendor Location:<span class="required">*</span></label>
+        <input id="vendor_location" formControlName="vendor_location">
+        <div *ngIf="isInvalid('vendor_location')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('zone')">
+        <label for="zone">Zone Name:<span class="required">*</span></label>
+        <select id="zone" formControlName="zone" (change)="onZoneChange()">
+          <option *ngFor="let zone of zones" [value]="zone.code">{{ zone.name }}</option>
+        </select>
+        <div *ngIf="isInvalid('zone')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('division')">
+        <label for="division">DIV Name:<span class="required">*</span></label>
+        <select id="division" formControlName="division">
+          <option *ngFor="let division of divisions" [value]="division.code">{{ division.name }}</option>
+        </select>
+        <div *ngIf="isInvalid('division')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('vendor_mobile')">
+        <label for="vendor_mobile">Vendor Mobile Number:<span class="required">*</span></label>
+        <input id="vendor_mobile" formControlName="vendor_mobile">
+        <div *ngIf="isInvalid('vendor_mobile')" class="error-message">Enter a valid 10 digit mobile number</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('vendor_email')">
+        <label for="vendor_email">Vendor Email Id:<span class="required">*</span></label>
+        <input id="vendor_email" formControlName="vendor_email">
+        <div *ngIf="isInvalid('vendor_email')" class="error-message">Enter a valid email</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('nodal_person_name')">
+        <label for="nodal_person_name">Nodal Railway Person Name:<span class="required">*</span></label>
+        <input id="nodal_person_name" formControlName="nodal_person_name">
+        <div *ngIf="isInvalid('nodal_person_name')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('nodal_person_contact')">
+        <label for="nodal_person_contact">Contact Number of Railway Person:<span class="required">*</span></label>
+        <input id="nodal_person_contact" formControlName="nodal_person_contact">
+        <div *ngIf="isInvalid('nodal_person_contact')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('nodal_person_email')">
+        <label for="nodal_person_email">Railway Person Email Id:<span class="required">*</span></label>
+        <input id="nodal_person_email" formControlName="nodal_person_email">
+        <div *ngIf="isInvalid('nodal_person_email')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('location_codes')">
+        <label for="location_codes">Location Codes/No of Locations where the APIs would be accessed:<span class="required">*</span></label>
+        <input id="location_codes" formControlName="location_codes">
+        <div *ngIf="isInvalid('location_codes')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('vendor_status')">
+        <label for="vendor_status">New/Existing Vendor:<span class="required">*</span></label>
+        <input id="vendor_status" formControlName="vendor_status" value="new" readonly>
+        <div *ngIf="isInvalid('vendor_status')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group" [class.invalid]="isInvalid('attachment')">
+        <label for="attachment">Attachment (Letter for Addition of Vendor from Railway in PDF format):<span class="required">*</span></label>
+        <input type="file" id="attachment" (change)="onFileChange($event)">
+        <div *ngIf="fileSizeError" class="error-message">{{ fileSizeError }}</div>
+        <div *ngIf="isInvalid('attachment')" class="error-message">This needs to be filled</div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="submit-button">Submit</button>
+      </div>
+    </form>
+  </div>

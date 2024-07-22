@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Form Submission Successful</h2>
+<mat-dialog-content>
+  <p>Your vendor form has been successfully submitted.</p>
+  <p>Subscriber ID: {{ data.subscriber_id }}</p>
+  <p>Would you like to go to the subscriber form or return to the landing page?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onLandingClick()" style="margin-right: 10px;">Landing Page</button>
+  <button mat-button color="primary" (click)="onSubscriberClick()">Subscriber Form</button>
+</mat-dialog-actions>

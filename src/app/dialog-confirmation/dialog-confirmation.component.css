@@ -1,0 +1,12 @@
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+
+mat-dialog-content {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

@@ -1,0 +1,74 @@
+<div>
+  <h2>Vendors</h2>
+  <input type="text" [(ngModel)]="filter" (input)="applyFilter()" placeholder="Filter by Vendor Name or Subscriber ID">
+  <button (click)="sortVendors()">Sort Vendors Alphabetically</button>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Vendor Name</th>
+        <th>Vendor Address Line 1</th>
+        <th>Vendor Address Line 2</th>
+        <th>Vendor State</th>
+        <th>Vendor Pincode</th>
+        <th>Vendor Location</th>
+        <th>Zone</th>
+        <th>Division</th>
+        <th>Vendor Mobile</th>
+        <th>Vendor Email</th>
+        <th>Nodal Person Name</th>
+        <th>Nodal Person Contact</th>
+        <th>Nodal Person Email</th>
+        <th>Location Codes</th>
+        <th>Vendor Status</th>
+        <th>PDF File Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vendor of filteredVendors">
+        <td>{{ vendor.id }}</td>
+        <td>{{ vendor.vendor_name }}</td>
+        <td>{{ vendor.vendor_address_line1 }}</td>
+        <td>{{ vendor.vendor_address_line2 }}</td>
+        <td>{{ vendor.vendor_address_state }}</td>
+        <td>{{ vendor.vendor_address_pincode }}</td>
+        <td>{{ vendor.vendor_location }}</td>
+        <td>{{ vendor.zone }}</td>
+        <td>{{ vendor.division }}</td>
+        <td>{{ vendor.vendor_mobile }}</td>
+        <td>{{ vendor.vendor_email }}</td>
+        <td>{{ vendor.nodal_person_name }}</td>
+        <td>{{ vendor.nodal_person_contact }}</td>
+        <td>{{ vendor.nodal_person_email }}</td>
+        <td>{{ vendor.location_codes }}</td>
+        <td>{{ vendor.vendor_status }}</td>
+        <td>{{ vendor.attachment }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <h2>Subscribers</h2>
+  <button (click)="sortSubscribers()">Sort Subscribers Alphabetically</button>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Subscriber ID</th>
+        <th>Display Device</th>
+        <th>Services Required</th>
+        <th>PDF File Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let subscriber of filteredSubscribers">
+        <td>{{ subscriber.id }}</td>
+        <td>{{ subscriber.subscriber_id }}</td>
+        <td>{{ subscriber.display_device }}</td>
+        <td>{{ subscriber.services_required }}</td>
+        <td>{{ subscriber.url }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
